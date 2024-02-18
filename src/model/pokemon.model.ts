@@ -3,7 +3,6 @@ export interface PokemonModel {
     id: number;
     nome: string;
     tamanho: string;
-    habilidades: string;
     imagem: string;
     stats: {
         hp: number;
