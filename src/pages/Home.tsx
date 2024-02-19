@@ -1,10 +1,30 @@
 import Box from "@mui/material/Box";
-import banner from "../assets/pokemon-home.jpg";
+import banner from "../assets/pokemon-inicio.jpg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import styled from "@mui/system/styled";
+
+
+const StyledButton = styled(Button)`
+  background-color: black;
+  color: white;
+  font-size: 1.3em;
+  width: 200px;
+  height: 75px;
+
+  &:hover {
+    background-color: darkred;
+    color: white;
+    transition: 0.9s;
+    transform: scale(1.1);
+    cursor: pointer;
+
+  }
+`;
 
 export function Home() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <Box style={{ position: "relative", width: "100%", height: "100vh" }}>
       <img
@@ -19,31 +39,25 @@ export function Home() {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)", 
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
         }}
       >
         <Box
           style={{
             position: "absolute",
-            top: "75%",
-            left: "55%",
+            top: "50%",
+            left: "50%",
             transform: "translate(-50%, -50%)",
             textAlign: "center",
           }}
         >
-          <Button
+          {/* Usando o botão estilizado */}
+          <StyledButton
             variant="contained"
-            style={{
-              backgroundColor: "black",
-              color: "white",
-              fontSize: "1.3em",
-              width: "200px",
-              height: "75px",
-            }}
             onClick={() => navigate("/pokemon")}
           >
             Bem-vindo!
-          </Button>
+          </StyledButton>
         </Box>
       </div>
     </Box>
