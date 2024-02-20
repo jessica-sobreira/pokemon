@@ -4,6 +4,7 @@ import { Pokemon } from "../pages/Pokemon";
 import { Personagem } from "../pages/Personagem";
 
 
+
 export const routes = createBrowserRouter([
     {
         path: "/",
@@ -11,7 +12,7 @@ export const routes = createBrowserRouter([
     },
     {
         path: "/pokemon",
-        element: <Pokemon />
+        element: <Pokemon  />
     },
     {
         path: "/personagem",

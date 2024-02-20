@@ -4,7 +4,7 @@ export interface PokemonModel {
     nome: string;
     tamanho: string;
     imagem: string;
-    stats: {
+    stats?: {
         hp: number;
         ataque: number;
         defesa: number;
