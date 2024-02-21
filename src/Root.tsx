@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { Header } from "./components/Header";
-import { Pokedex } from "./components/Pokedex";
 import { pokemonTheme } from "./config/themes/default.theme";
 import { useAppSelector } from "./config/hooks";
 import { darkTheme } from "./config/themes/dark.mode";
+import { RouterProvider } from "react-router-dom";
+import { routes } from "./routes/routes";
 
 export function Root() {
     const defaultTheme = useAppSelector((state) => state.theme)
@@ -14,8 +14,7 @@ export function Root() {
         <>
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header />
-            <Pokedex />
+            <RouterProvider router={routes} />
         </ThemeProvider>
 
         </>

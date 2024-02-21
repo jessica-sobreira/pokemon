@@ -7,7 +7,7 @@ export function Header() {
     return (
         <>
         <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{backgroundColor: "darkred"}}>
+        <AppBar position="static">
             <Toolbar>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
                 Pokemon 
