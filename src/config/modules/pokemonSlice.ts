@@ -28,7 +28,7 @@ export const pokemonChamada = createAsyncThunk('pokemon/get', async (pokemonName
 
 const pokemonSlice = createSlice({
   name: 'pokemon',
-  initialState,
+  initialState: initialState,
   reducers: {},
   extraReducers: builder => {
     builder

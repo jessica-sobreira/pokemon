@@ -51,7 +51,7 @@ export function Home() {
             textAlign: "center",
           }}
         >
-          {/* Usando o botão estilizado */}
+         
           <StyledButton
             variant="contained"
             onClick={() => navigate("/pokemon")}
