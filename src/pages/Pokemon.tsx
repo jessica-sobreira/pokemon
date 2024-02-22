@@ -1,32 +1,51 @@
 import { useNavigate } from "react-router-dom";
-import { Pokedex } from "../components/Pokedex";
 import { Header } from "../components/Header";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import AddIcon from '@mui/icons-material/Add';
-import StarIcon from '@mui/icons-material/Star';
-
+import { useAppDispatch, useAppSelector } from "../config/hooks";
+import { RootState } from "../config/store";
+import { useEffect } from "react";
+import { pokemonChamada } from "../config/modules/pokemonSlice";
 import { PokemonModel } from "../model/pokemon.model";
 
-
-
-// interface PokemonProps {
-//     pokemon: PokemonModel
-// }
-
 export function Pokemon() {
-    
     const navigate = useNavigate();
-    
+    const dispatch = useAppDispatch();
+    const { pokemonData, loading, error } = useAppSelector((state: RootState) => state.pokemon);
+
+    useEffect(() => {
+        dispatch(pokemonChamada("pikachu"));
+    }, [dispatch]);
+
+    if (loading) {
+        return <h1>Carregando...</h1>
+    }
+
+    if (error) {
+        return <h1>Erro ao carregar os pokemons</h1>
+    }
+
     return (
         <>
         <Header />
-        <Pokedex />
-        <Card sx={{ maxWidth: 345 }}>
+        <h1>Pokemon</h1>
+        <div>
+            <h1>Lista de Personagens</h1>
+            <ul>
+                {pokemonData.map(({ name, height, id }: PokemonModel) => (
+                    <li key={name}>
+                        <div>Name: {name}</div>
+                        <div>Height: {height}</div>
+                        <div>ID: {id}</div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+        </>
+    )
+}
+
+
+
+        {/* <Card sx={{ maxWidth: 345 }}>
         <CardMedia
             sx={{ height: 140 }}
             image="/static/images/cards/contemplative-reptile.jpg"
@@ -45,9 +64,6 @@ export function Pokemon() {
             <Button size="small" onClick={() => navigate("/personagem")} startIcon={<AddIcon />} style={{ fontSize: "1.3em", color: "darkred" }}></Button>
             <Button size="small" startIcon={<StarIcon />} style={{ fontSize: "1.3em", color: "darkred" }}></Button>
         </CardActions>
-        </Card>
-        </>
-    )
-}
+        </Card> */}
 
  
