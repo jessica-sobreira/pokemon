@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { Header } from "../components/Header";
 
 
 export function Personagem() {
     const navigate = useNavigate();
     return (
         <>
+        <Header />
         <ul>
             <li>Imagem</li>
             <li>ID</li>

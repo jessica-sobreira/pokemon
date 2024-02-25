@@ -8,6 +8,7 @@ import pokemonSlice from "./modules/pokemonSlice";
 export const rootReducer = combineReducers({
     theme: themeSlice,
     pokemon: pokemonSlice,
+    
  
 });
 

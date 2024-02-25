@@ -1,8 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home";
-import { Pokemon } from "../pages/Pokemon";
 import { Personagem } from "../pages/Personagem";
-
+import { Pokemon } from "../pages/Pokemon";
 
 
 export const routes = createBrowserRouter([
@@ -12,7 +11,7 @@ export const routes = createBrowserRouter([
     },
     {
         path: "/pokemon",
-        element: <Pokemon  />
+        element: <Pokemon />
     },
     {
         path: "/personagem",

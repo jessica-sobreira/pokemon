@@ -1,7 +1,5 @@
 
 export interface PokemonModel {
-    id: number;
     name: string;
-    height: number;
-
+    url: string;
 } 
