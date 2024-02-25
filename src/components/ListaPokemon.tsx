@@ -33,8 +33,8 @@ export function ListaPokemon() {
             </Typography>
         </CardContent>
         <CardActions style={{ display: "flex", justifyContent: "space-between" }}>
-            <Button onClick={() => navigate("/personagem")} size="large" startIcon={<AddIcon />}></Button>
-            <Button onClick={() => navigate("/")} size="large" startIcon={<StarIcon />}></Button>
+            <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}></Button>
+            <Button onClick={() => navigate("/")} startIcon={<StarIcon />}></Button>
         </CardActions>
         </Card>
 
