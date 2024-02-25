@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material";
 export const pokemonTheme = createTheme({
     palette: {
         primary: {
-            main: "#f00000"
+            main: "#f00000", 
             
         },
         secondary: {
