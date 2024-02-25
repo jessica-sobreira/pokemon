@@ -41,7 +41,7 @@ export function ListaPokemon() {
                         image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             Nome:
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -69,7 +69,7 @@ export function ListaPokemon() {
                         image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             Nome:
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -97,7 +97,7 @@ export function ListaPokemon() {
                         image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             Nome:
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -125,7 +125,7 @@ export function ListaPokemon() {
                         image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             Nome:
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -153,7 +153,7 @@ export function ListaPokemon() {
                         image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             Nome:
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -181,7 +181,7 @@ export function ListaPokemon() {
                         image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             Nome:
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -209,7 +209,7 @@ export function ListaPokemon() {
                         image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             Nome:
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
