@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
-import { Box, Button, Grid, Card, CardContent, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import ReplyIcon from '@mui/icons-material/Reply';
+import { Footer } from "../components/Footer";
 
 export function Personagem() {
     const navigate = useNavigate();
@@ -9,25 +10,34 @@ export function Personagem() {
     return (
         <>
             <Header />
-            <Box style={{ display: "flex", justifyContent: "space-between", flexDirection: "row" }}>
-                
+            <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", justifyContent: "space-between", padding: { xs: "16px", md: "32px" } }}>
 
-                <Typography variant="h1" sx={{ fontSize: "2.5em", fontWeight: "bold", marginTop: "0.5em", marginBottom: "0.5em", textAlign: "center" }}>Personagem</Typography>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon" style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }} />
-            
+                <Box sx={{ marginBottom: { xs: "16px", md: 0 }, textAlign: { xs: "center", md: "left" } }}>
+                    <Typography variant="h1" sx={{ fontSize: "2.5em", fontWeight: "bold", marginBottom: "1.5em" }}>Personagem</Typography>
+                    <Typography variant="h5" component="div">ID: 1</Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ marginBottom: "0.5em" }}>Tamanho: 10</Typography>
+                    <Typography variant="h5" component="div">Lista de Habilidades</Typography>
+                    <ul style={{ paddingLeft: "20px", marginBottom: "0.5em" }}>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                    <Typography variant="h5" color="text.secondary" sx={{ marginBottom: "0.5em" }}>Lista de Stats</Typography>
+                    <ul style={{ paddingLeft: "20px", marginBottom: "0.5em" }}>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </Box>
 
-            <Grid container spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }} >
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon" style={{ maxWidth: { xs: "100%", md: "auto" }, height: "auto", marginBottom: { xs: "16px", md: 0 } }} />
+
+            </Box>
+
+            <Grid container justifyContent="center" mt={3}>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                ID
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                1
-                            </Typography>
-                        </CardContent>
-                    </Card>
                     <Button 
                         size="small" 
                         startIcon={<ReplyIcon />} 
@@ -38,10 +48,7 @@ export function Personagem() {
                     </Button>
                 </Grid>
             </Grid>
-
-
-
-            </Box>
+            <Footer />
         </>
     );
 }
