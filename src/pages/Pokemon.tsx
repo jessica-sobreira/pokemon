@@ -3,6 +3,8 @@ import { Footer } from "../components/Footer";
 import { ListaPokemon } from "../components/ListaPokemon";
 
 
+
+
 export function Pokemon() { 
 
     return (
@@ -10,6 +12,7 @@ export function Pokemon() {
             <Header />
             <ListaPokemon />
             <Footer />
+
         </>
     )
 }

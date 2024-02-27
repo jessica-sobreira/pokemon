@@ -1,33 +1,28 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Paginacao } from "../../model/paginacao.model";
 
-const paginacao: Paginacao = {
+// Estado inicial da paginação
+const initialState: Paginacao = {
     currentPage: 1,
-    rowsPerPage: 3,
+    rowsPerPage: 2, // Número padrão de itens por página
 };
 
+// Slice de paginação
 const paginacaoSlice = createSlice({
     name: "paginacao",
-    initialState: paginacao,
+    initialState,
     reducers: {
+        // Reducer para mudar a página atual
         changePage: (state, action: PayloadAction<number>) => {
-
-            return {
-                ...state,
-                currentPage: action.payload,
-            };
+            state.currentPage = action.payload;
         },
+        // Reducer para mudar o número de itens por página
         changeRowsPerPage: (state, action: PayloadAction<number>) => {
-            console.log(action);
-
-            return {
-                ...state,
-                rowsPerPage: action.payload,
-            };
+            state.rowsPerPage = action.payload;
         },
     },
 });
 
-    export default paginacaoSlice.reducer;
-    
-    export const { changePage, changeRowsPerPage } = paginacaoSlice.actions;
+// Exporta os reducers e o reducer default da slice
+export const { changePage, changeRowsPerPage } = paginacaoSlice.actions;
+export default paginacaoSlice.reducer;

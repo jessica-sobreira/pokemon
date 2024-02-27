@@ -13,7 +13,7 @@ export const personagensThunk = createAsyncThunk("personagem/get", async () => {
  try {
    let pokemons: Personagem[] = [];
 
-   for (let i = 1; i < 68; i++) {
+   for (let i = 1; i < 1303; i++) {
      const response = await api.get(`/pokemon/${i}/`);
      
      const pokemom: Personagem = {
