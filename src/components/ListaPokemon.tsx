@@ -6,12 +6,22 @@ import { useAppDispatch, useAppSelector } from '../config/hooks';
 import { changePage, changeRowsPerPage } from '../config/modules/paginacao.slice';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { personagensThunk } from '../config/modules/pokemonSlice';
+import { useEffect } from 'react';
 
 
 export function ListaPokemon() {
+    const dispatch = useAppDispatch();
+    const pokemonDados = useAppSelector((state) => state.pokemon);
+    
+    useEffect(() => {
+        dispatch(personagensThunk()); 
+    }, [dispatch]);
+
+
     const navigate = useNavigate();
     const paginacao = useAppSelector((state) => state.paginacao);
-    const dispatch = useAppDispatch();
+
 
     const mudarPagina = (_: any, pagina: number) => {
         dispatch(changePage(pagina + 1));
@@ -26,10 +36,11 @@ export function ListaPokemon() {
     
     return (
         <>
-        
         <Stack spacing={2}
             sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
             >
+
+        {pokemonDados.map((pokemon) => (
         <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center" }}>
                 <Card sx={{ maxWidth: 345, margin: "2em", padding: "10px" }}>
@@ -38,14 +49,14 @@ export function ListaPokemon() {
                         component="img"
                         alt="pokemon"
                         height="300"
-                        image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
+                        image={pokemon.imgUrl}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="div">
-                            Nome:
+                        #{pokemon.id} - {pokemon.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Tamanho:
+                            Tamanho: {pokemon.tamanho}
                         </Typography>
                     </CardContent>
                     <CardActions style={{ display: "flex", justifyContent: "space-between", alignItems: "center",  }}>
@@ -58,176 +69,8 @@ export function ListaPokemon() {
                     </CardActions>
                 </Card>
             </Grid>
-
-            <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center" }}>
-                <Card sx={{ maxWidth: 345, margin: "2em", padding: "10px" }}>
-                    <CardMedia
-                        style={{ objectFit: "contain" }}
-                        component="img"
-                        alt="pokemon"
-                        height="300"
-                        image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                            Nome:
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Tamanho:
-                        </Typography>
-                    </CardContent>
-                    <CardActions style={{ display: "flex", justifyContent: "space-between", alignItems: "center",  }}>
-                        <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}>
-                            Detalhes
-                        </Button>
-                        <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>
-                            Favorito
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center" }}>
-                <Card sx={{ maxWidth: 345, margin: "2em", padding: "10px" }}>
-                    <CardMedia
-                        style={{ objectFit: "contain" }}
-                        component="img"
-                        alt="pokemon"
-                        height="300"
-                        image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                            Nome:
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Tamanho:
-                        </Typography>
-                    </CardContent>
-                    <CardActions style={{ display: "flex", justifyContent: "space-between", alignItems: "center",  }}>
-                        <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}>
-                            Detalhes
-                        </Button>
-                        <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>
-                            Favorito
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center" }}>
-                <Card sx={{ maxWidth: 345, margin: "2em", padding: "10px" }}>
-                    <CardMedia
-                        style={{ objectFit: "contain" }}
-                        component="img"
-                        alt="pokemon"
-                        height="300"
-                        image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                            Nome:
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Tamanho:
-                        </Typography>
-                    </CardContent>
-                    <CardActions style={{ display: "flex", justifyContent: "space-between", alignItems: "center",  }}>
-                        <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}>
-                            Detalhes
-                        </Button>
-                        <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>
-                            Favorito
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center" }}>
-                <Card sx={{ maxWidth: 345, margin: "2em", padding: "10px" }}>
-                    <CardMedia
-                        style={{ objectFit: "contain" }}
-                        component="img"
-                        alt="pokemon"
-                        height="300"
-                        image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                            Nome:
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Tamanho:
-                        </Typography>
-                    </CardContent>
-                    <CardActions style={{ display: "flex", justifyContent: "space-between", alignItems: "center",  }}>
-                        <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}>
-                            Detalhes
-                        </Button>
-                        <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>
-                            Favorito
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center" }}>
-                <Card sx={{ maxWidth: 345, margin: "2em", padding: "10px" }}>
-                    <CardMedia
-                        style={{ objectFit: "contain" }}
-                        component="img"
-                        alt="pokemon"
-                        height="300"
-                        image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                            Nome:
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Tamanho:
-                        </Typography>
-                    </CardContent>
-                    <CardActions style={{ display: "flex", justifyContent: "space-between", alignItems: "center",  }}>
-                        <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}>
-                            Detalhes
-                        </Button>
-                        <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>
-                            Favorito
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center" }}>
-                <Card sx={{ maxWidth: 345, margin: "2em", padding: "10px" }}>
-                    <CardMedia
-                        style={{ objectFit: "contain" }}
-                        component="img"
-                        alt="pokemon"
-                        height="300"
-                        image="https://e7.pngegg.com/pngimages/141/1013/png-clipart-pokemon-pikachu-illustration-pokemon-gold-and-silver-pikachu-pikachu-video-game-cartoon-thumbnail.png"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                            Nome:
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Tamanho:
-                        </Typography>
-                    </CardContent>
-                    <CardActions style={{ display: "flex", justifyContent: "space-between", alignItems: "center",  }}>
-                        <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}>
-                            Detalhes
-                        </Button>
-                        <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>
-                            Favorito
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-
         </Grid>
+        ))}
 
 
 
@@ -247,6 +90,9 @@ export function ListaPokemon() {
         </Stack>
         <br />
         <br />
-    </>
-    );
-}
+
+        </>
+    )
+        }
+
+

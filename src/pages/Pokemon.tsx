@@ -1,20 +1,15 @@
-
-import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
-import { ListaPokemon } from "../components/ListaPokemon";
 import { Footer } from "../components/Footer";
+import { ListaPokemon } from "../components/ListaPokemon";
 
-export function Pokemon() {
-    const navigate = useNavigate();
+
+export function Pokemon() { 
 
     return (
         <>
-        <Header />
-        <ListaPokemon />
-        <Footer />
+            <Header />
+            <ListaPokemon />
+            <Footer />
         </>
     )
 }
-    
-
-
