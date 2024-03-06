@@ -1,112 +1,148 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { api } from "../../services/api.service";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-interface Personagem {
- id: number;
- name: string;
- tamanho: number;
- imgUrl: string;
-
+interface NamedAPIResource {
+  url: string;
 }
 
-export const personagensThunk = createAsyncThunk("personagem/get", async () => {
- try {
-   let pokemons: Personagem[] = [];
+interface PokemonType {
+  id: number;
+  name: string;
+  base_experience: number;
+  tamanho: number;
+  imgUrl: string;
+  location_area_encounters: string;
+  moves: any[];
+  stats: any[];
+}
 
-   for (let i = 1; i < 1303; i++) {
-     const response = await api.get(`/pokemon/${i}/`);
-     
-     const pokemom: Personagem = {
-       id: response.data.id,
-       name: response.data.name,
-       tamanho: response.data.height,
-       imgUrl: response.data.sprites.front_default,
-     };
-     pokemons.push(pokemom);
-   }
-
-   return pokemons;
-
- } catch (error) {
-   throw error;
- }
+export const getPokemons = createAsyncThunk("pokemons/get", async () => {
+  try {
+    const response = await api.get("/pokemon");
+    const pokemonPromises = response.data.results.map(async (item: NamedAPIResource) => {
+      const responsePokemon = await axios.get(item.url);
+      const pokemon: PokemonType = {
+        id: responsePokemon.data.id,
+        name: responsePokemon.data.name,
+        base_experience: responsePokemon.data.base_experience,
+        imgUrl: responsePokemon.data.sprites.front_default,
+        tamanho: responsePokemon.data.height,
+        location_area_encounters: responsePokemon.data.location_area_encounters,
+        moves: responsePokemon.data.moves,
+        stats: responsePokemon.data.stats,
+      };
+      return pokemon;
+    });
+    const pokemons = await Promise.all(pokemonPromises);
+    console.log(pokemons);
+    return pokemons;
+  } catch (error) {
+    throw error;
+  }
 });
-const personagensSlice = createSlice({
- name: "personagens",
- initialState: [] as Personagem[],
- reducers: {},
- extraReducers: (builder) => {
-   builder.addCase(
-     personagensThunk.fulfilled, (state, action: PayloadAction<Personagem[]>) => {
-       state.push(...action.payload);
-     }
-   );
- },
+
+const pokemonSlice = createSlice({
+  name: "pokemons",
+  initialState: [] as PokemonType[],
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getPokemons.fulfilled, (state, action) => {
+      state.push(...action.payload); 
+    });
+  },
 });
 
-export default personagensSlice.reducer;
+export default pokemonSlice.reducer;
 
 
 
 
 
-// export type Pokemon = {
-//   name: string;
-//   height: number;
-//   weight: number;
-//   types: {
-//     type: {
-//       name: string;
-//     };
-//   }[];
-//   abilities: {
-//     ability: {
-//       name: string;
-//     };
-//   }[];
-// };
 
-// interface PokemonState {
-//   data: Pokemon[];
-// }
 
-// const initialState: PokemonState = {
-//   data: [],
-// };
 
-// export const pokemonData = createAsyncThunk("pokemon/fetchPokemon", async () => {
-//   try {
-//     const response = await api.get("/pokemon/?limit=10");
-//     const pokemons = response.data.results.map(async(pokemon: any) => {
-//     const pokemonUrl = await api.get(`pokemon/${pokemon.url}`); 
-//       return pokemon.url;
-//     }) 
-//     console.log(pokemons);
+// export const getPokemons = createAsyncThunk("pokemons/get", async()=>{
+//   const response = await axios.get("https://pokeapi.co/api/v2/pokemon/");
+
+//   const pokemonPromises = response.data.results.map(async (item:NamedAPIResource)=>{
+
+//     const responsePokemon = await (await axios.get(item.url)).data;
    
-//     return response.data.results;
-//   } catch (error) {
-//     console.error("Erro ao buscar os dados dos Pokémon:", error);
-//     throw error;
-//   }
-// });
+    
+//     const pokemon:PokemonType = {
+//       id: responsePokemon.id,
+//       name: responsePokemon.name,
+//       base_experience: responsePokemon.base_experience,
+//       height: responsePokemon.height,
+//       weight: responsePokemon.weight,
+//       location_area_encounters: responsePokemon.location_area_encounters,
+//       moves: responsePokemon.moves,
+//       stats: responsePokemon.stats,
+//     };
 
 
-// const pokemonSlice = createSlice({
-//   name: "pokemon",
-//   initialState,
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder.addCase(pokemonData.fulfilled, (state, action: PayloadAction<Pokemon[]>) => {
-//       if (Array.isArray(action.payload)) {
-//         state.data = action.payload;
-//       } else {
-//         console.error("Payload da ação pokemonData.fulfilled não é um array válido:", action.payload);
-//       }
-//     });
-//   },
-// });
-   
+//     return pokemon
+//   })
+
+
+//   const pokemons = await Promise.all(pokemonPromises);
+
+//   console.log(pokemons);
   
    
+// })
+
+
+
+
+
+
+
+
+
+
+// interface Personagem {
+//  id: number;
+//  name: string;
+//  tamanho: number;
+//  imgUrl: string;
+// }
+
+// export const personagensThunk = createAsyncThunk("personagem/get", async () => {
+//  try {
+//    let pokemons: Personagem[] = [];
+
+//    for (let i = 1; i < 1302; i++) {
+//      const response = await api.get(`/pokemon/${i}/`);
+     
+//      const pokemom: Personagem = {
+//        id: response.data.id,
+//        name: response.data.name,
+//        tamanho: response.data.height,
+//        imgUrl: response.data.sprites.front_default,
+//      };
+//      pokemons.push(pokemom);
+//    }
+
+//    return pokemons;
+
+//  } catch (error) {
+//    throw error;
+//  }
+// });
+
+// const pokemonSlice = createSlice({
+//  name: "pokemons",
+//  initialState: [] as Personagem[],
+//  reducers: {},
+//  extraReducers: (builder) => {
+//    builder.addCase(
+//      personagensThunk.fulfilled, (state, action: PayloadAction<Personagem[]>) => {
+//        state = action.payload; 
+//      }
+//    );
+//  },
+// });
 
 // export default pokemonSlice.reducer;

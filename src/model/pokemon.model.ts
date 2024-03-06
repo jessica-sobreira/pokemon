@@ -1,5 +1,11 @@
 
 export interface PokemonModel {
+    id: number;
     name: string;
-    url: string;
+    height: number;
+    sprites: PokemonFoto;
 } 
+
+export interface PokemonFoto {
+    front_default: string;
+}

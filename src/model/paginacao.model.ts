@@ -1,4 +1,5 @@
-export interface Paginacao {
-    currentPage: number;
-    rowsPerPage: number;
+
+export interface PaginacaoModel {
+    atual: number;
+    itensPorPagina: number; 
 }

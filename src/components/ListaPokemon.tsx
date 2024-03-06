@@ -1,35 +1,30 @@
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, Stack, Pagination } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import { useAppDispatch, useAppSelector } from '../config/hooks';
-import { personagensThunk } from '../config/modules/pokemonSlice';
-import { useEffect } from 'react';
 import { RootState } from '../config/store';
 import { Paginacao } from './Paginacao';
-import { changePage } from '../config/modules/paginacao.slice';
 
 export function ListaPokemon() {
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const pokemonDados = useAppSelector((state: RootState) => state.pokemon);
+
+
     const paginacao = useAppSelector((state: RootState) => state.paginacao);
 
-    useEffect(() => {
-        // Calcula o índice inicial e final dos pokémons da página atual
-        const startIndex = (paginacao.currentPage - 1) * paginacao.rowsPerPage;
-        const endIndex = startIndex + paginacao.rowsPerPage;
-        // Dispara a ação para buscar apenas os pokémons da página atual
-        dispatch(personagensThunk({ startIndex, endIndex }));
-    }, [dispatch, paginacao.currentPage, paginacao.rowsPerPage]);
 
+    const posInicial = paginacao.itensPorPagina * (paginacao.atual - 1);
+    const posFinal = Math.min(posInicial + paginacao.itensPorPagina, pokemonDados.length);
 
     return (
         <>
             <Stack spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Grid container spacing={2} justifyContent="center" alignItems="center" padding={2} sx={{ mt: 2 }} >
-                    {pokemonDados.map((pokemon) => (
-                        <Grid item key={pokemon.id} xs={12} sm={4} md={4} lg={3}>
+
+                    {pokemonDados.slice(posInicial, posFinal).map((pokemon) => (
+                        <Grid item key={pokemon.id} xs={12} sm={6} md={4} lg={3}>
                             <Card key={pokemon.id} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%'  }}>
                                 <CardMedia
                                     component="img"
@@ -59,20 +54,12 @@ export function ListaPokemon() {
                 </Grid>
             </Stack>
             <br />
-            <Pagination 
-            count={10} 
-            color="primary"
-            onChange={(_event, page) => dispatch(changePage(page))}
-            page={paginacao.currentPage}
-            sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-            />
+            <Paginacao />
             <br />
             <br />
-
         </>
     );
 }
-
 
 
 
