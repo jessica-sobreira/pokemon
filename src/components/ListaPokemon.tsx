@@ -5,22 +5,56 @@ import StarIcon from '@mui/icons-material/Star';
 import { useAppDispatch, useAppSelector } from '../config/hooks';
 import { RootState } from '../config/store';
 import { Paginacao } from './Paginacao';
+import { useEffect } from 'react';
+import { buscarPokemonURL, listarPokemons } from '../services/api.service';
+import { PokemonModel } from '../model/pokemon.model';
+import { Lista } from '../model/lista.model';
 
 export function ListaPokemon() {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const pokemonDados = useAppSelector((state: RootState) => state.pokemon);
+    // const dispatch = useAppDispatch();
+    // const pokemonDados = useAppSelector((state: RootState) => state.pokemon);
+
+    useEffect(() => {
+        listarPokemons().then(obterRetorno)
+        }, []);
+
+        const obterRetorno = async (result: Lista | null) => {
+            console.log(result?.results);
+            
+            if(!result?.results) {
+                return; 
+            } 
+
+            const pokemons: PokemonModel[] = [];
+            
+            for(let pokemonItem of result?.results) {
+                const pokemon = await buscarPokemonURL(pokemonItem.url);
+
+                if(pokemon !== null) {
+                    pokemons.push(pokemon);
+                    
+                }
+
+        }
+           
+            console.log(pokemons);
+            
+        };
+    
+
+
 
 
     const paginacao = useAppSelector((state: RootState) => state.paginacao);
 
 
-    const posInicial = paginacao.itensPorPagina * (paginacao.atual - 1);
-    const posFinal = Math.min(posInicial + paginacao.itensPorPagina, pokemonDados.length);
+    // const posInicial = paginacao.itensPorPagina * (paginacao.atual - 1);
+    // const posFinal = Math.min(posInicial + paginacao.itensPorPagina, pokemonDados.length);
 
     return (
         <>
-            <Stack spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            {/* <Stack spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Grid container spacing={2} justifyContent="center" alignItems="center" padding={2} sx={{ mt: 2 }} >
 
                     {pokemonDados.slice(posInicial, posFinal).map((pokemon) => (
@@ -56,7 +90,7 @@ export function ListaPokemon() {
             <br />
             <Paginacao />
             <br />
-            <br />
+            <br /> */}
         </>
     );
 }
