@@ -1,59 +1,118 @@
-import { api } from "../../services/api.service";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { PokemonModel } from "../../model/pokemon.model";
+import { buscarPokemonURL, listarPokemons } from "../../services/api.service";
 
-interface NamedAPIResource {
-  url: string;
-}
+export const listarPokemonThunk = createAsyncThunk("pokemons/get", async () => {
+  const listaBasica = await listarPokemons();
 
-interface PokemonType {
-  id: number;
-  name: string;
-  base_experience: number;
-  tamanho: number;
-  imgUrl: string;
-  location_area_encounters: string;
-  moves: any[];
-  stats: any[];
-}
-
-export const getPokemons = createAsyncThunk("pokemons/get", async () => {
-  try {
-    const response = await api.get("/pokemon");
-    const pokemonPromises = response.data.results.map(async (item: NamedAPIResource) => {
-      const responsePokemon = await axios.get(item.url);
-      const pokemon: PokemonType = {
-        id: responsePokemon.data.id,
-        name: responsePokemon.data.name,
-        base_experience: responsePokemon.data.base_experience,
-        imgUrl: responsePokemon.data.sprites.front_default,
-        tamanho: responsePokemon.data.height,
-        location_area_encounters: responsePokemon.data.location_area_encounters,
-        moves: responsePokemon.data.moves,
-        stats: responsePokemon.data.stats,
-      };
-      return pokemon;
-    });
-    const pokemons = await Promise.all(pokemonPromises);
-    console.log(pokemons);
-    return pokemons;
-  } catch (error) {
-    throw error;
+  if(!listaBasica) {
+    return [];
   }
+
+  const pokemons: PokemonModel[] = [];
+
+  for(let pokemonItem of listaBasica.results) {
+    const pokemon = await buscarPokemonURL(pokemonItem.url);
+
+    if(pokemon !== null) {
+      pokemons.push(pokemon);
+    }
+  }
+  return pokemons;
+
 });
 
-const pokemonSlice = createSlice({
+
+const pokemonsSlice = createSlice({
   name: "pokemons",
-  initialState: [] as PokemonType[],
+  initialState: [] as PokemonModel[],
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getPokemons.fulfilled, (state, action) => {
-      state.push(...action.payload); 
+    builder.addCase(listarPokemonThunk.fulfilled, (state, action) => {
+      return action.payload;
     });
-  },
-});
+  }
 
-export default pokemonSlice.reducer;
+});
+    
+export default pokemonsSlice.reducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { api } from "../../services/api.service";
+// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+// import axios from "axios";
+
+// interface NamedAPIResource {
+//   url: string;
+// }
+
+// interface PokemonType {
+//   id: number;
+//   name: string;
+//   base_experience: number;
+//   tamanho: number;
+//   imgUrl: string;
+//   location_area_encounters: string;
+//   moves: any[];
+//   stats: any[];
+// }
+
+// export const getPokemons = createAsyncThunk("pokemons/get", async () => {
+//   try {
+//     const response = await api.get("/pokemon");
+//     const pokemonPromises = response.data.results.map(async (item: NamedAPIResource) => {
+//       const responsePokemon = await axios.get(item.url);
+//       const pokemon: PokemonType = {
+//         id: responsePokemon.data.id,
+//         name: responsePokemon.data.name,
+//         base_experience: responsePokemon.data.base_experience,
+//         imgUrl: responsePokemon.data.sprites.front_default,
+//         tamanho: responsePokemon.data.height,
+//         location_area_encounters: responsePokemon.data.location_area_encounters,
+//         moves: responsePokemon.data.moves,
+//         stats: responsePokemon.data.stats,
+//       };
+//       return pokemon;
+//     });
+//     const pokemons = await Promise.all(pokemonPromises);
+//     console.log(pokemons);
+//     return pokemons;
+//   } catch (error) {
+//     throw error;
+//   }
+// });
+
+// const pokemonSlice = createSlice({
+//   name: "pokemons",
+//   initialState: [] as PokemonType[],
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder.addCase(getPokemons.fulfilled, (state, action) => {
+//       state.push(...action.payload); 
+//     });
+//   },
+// });
+
+// export default pokemonSlice.reducer;
 
 
 
