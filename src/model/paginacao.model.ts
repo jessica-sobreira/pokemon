@@ -1,5 +1,6 @@
 
 export interface PaginacaoModel {
-    atual: number;
-    itensPorPagina: number; 
+    page: number;
+    itensPerPage: number;
+    count: number; 
 }
