@@ -1,10 +1,24 @@
 import { Pagination } from "@mui/material"
+import { useAppDispatch, useAppSelector } from "../config/hooks";
+import { setPagina } from "../config/modules/paginacao.slice";
+import { listarPokemonThunk } from "../config/modules/pokemonSlice";
 
 
 export const Paginacao = () => {
-    return(
-        <div>
-            <Pagination count={65} page={1} color="primary" sx={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
-        </div>
+
+    const paginacao = useAppSelector(state => state.paginacao);
+    const countPages = Math.floor(paginacao.count / paginacao.itensPerPage);
+    const dispatch = useAppDispatch();
+
+    const mudarPagina = (_: any, pagina: number) => {
+        dispatch(setPagina(pagina));
+        dispatch(listarPokemonThunk());
+    }
+
+    return (
+        <>
+        <Pagination count={countPages} page={paginacao.page} onChange={mudarPagina} color="primary" sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}  />
+        </>
+
     ) 
 }

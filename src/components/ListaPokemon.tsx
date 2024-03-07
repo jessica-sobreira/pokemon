@@ -13,20 +13,13 @@ export function ListaPokemon() {
     const dispatch = useAppDispatch();
     const pokemonDados = useAppSelector(state => state.pokemon);
 
-    // const pokemonDados = useAppSelector((state: RootState) => state.pokemon);
-
 
     useEffect(() => {
         dispatch(listarPokemonThunk());
 
         }, []);
 
-    const paginacao = useAppSelector((state: RootState) => state.paginacao);
-
-
-    // const posInicial = paginacao.itensPorPagina * (paginacao.atual - 1);
-    // const posFinal = Math.min(posInicial + paginacao.itensPorPagina, pokemonDados.length);
-
+    
     return (
         <>
             <Stack spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

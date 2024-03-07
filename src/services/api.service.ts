@@ -8,9 +8,9 @@ export const api = axios.create({
 
 });
 
-export async function listarPokemons() {
+export async function listarPokemons(limit: number, offset: number) {
     try {
-        const result = await api.get("/pokemon");
+        const result = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
         return result.data as Lista;
         
     } catch (error: any) {

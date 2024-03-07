@@ -1,13 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PokemonModel } from "../../model/pokemon.model";
 import { buscarPokemonURL, listarPokemons } from "../../services/api.service";
+import { setCount } from "./paginacao.slice";
+import { RootState } from "../store";
 
-export const listarPokemonThunk = createAsyncThunk("pokemons/get", async () => {
-  const listaBasica = await listarPokemons();
+export const listarPokemonThunk = createAsyncThunk("pokemons/get", async (_, config) => {
+  
+  const state = config.getState() as RootState;
+
+  const limit = state.paginacao.itensPerPage;
+
+  const offset = (state.paginacao.page - 1) * state.paginacao.itensPerPage;
+  
+  const listaBasica = await listarPokemons(limit, offset);
 
   if(!listaBasica) {
     return [];
   }
+
+  config.dispatch(setCount(listaBasica.count));
 
   const pokemons: PokemonModel[] = [];
 
