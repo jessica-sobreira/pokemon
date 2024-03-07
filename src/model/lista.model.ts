@@ -1,4 +1,3 @@
-
 export interface Lista {
     count: number;
     results: Item[];

@@ -1,4 +1,3 @@
-
 export interface PaginacaoModel {
     page: number;
     itensPerPage: number;
