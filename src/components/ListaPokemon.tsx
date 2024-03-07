@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../config/hooks';
 import { Paginacao } from './Paginacao';
 import { useEffect } from 'react';
 import { listarPokemonThunk } from '../config/modules/pokemonSlice';
+import { CircularProgress, Box } from '@mui/material';
 
 export function ListaPokemon() {
     const navigate = useNavigate();
@@ -18,11 +19,17 @@ export function ListaPokemon() {
 
         }, []);
 
-        if(!pokemonDados) {
-            <div>
-                <p>Carregando...</p>
-            </div>
+        if (!pokemonDados) {
+            return (
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                    <Box>
+                        <CircularProgress />
+                        <Typography variant="body1" mt={2}>Carregando...</Typography>
+                    </Box>
+                </Box>
+            );
         }
+
 
     
     return (
