@@ -32,3 +32,15 @@ export async function buscarPokemonURL(url: string) {
     }
     
 }
+
+export async function buscarPokemonID(id: number) {
+    try {
+        const result = await api.get(`/pokemon/${id}`);
+        return result.data as PokemonModel;
+
+    } catch (error: any) {
+        alert(error.toString());
+        console.log(error);
+        return null;
+    }
+}

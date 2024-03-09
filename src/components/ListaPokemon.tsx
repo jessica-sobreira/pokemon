@@ -55,7 +55,7 @@ export function ListaPokemon() {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button onClick={() => navigate("/personagem")} startIcon={<AddIcon />}>
+                                    <Button onClick={() => navigate(`/pokemon/${pokemon.id}`)} startIcon={<AddIcon />}>
                                         Detalhes
                                     </Button>
                                     <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>

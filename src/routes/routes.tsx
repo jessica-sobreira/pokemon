@@ -14,7 +14,7 @@ export const routes = createBrowserRouter([
         element: <Pokemon />
     },
     {
-        path: "/personagem",
+        path: "/pokemon/:id",
         element: <Personagem />
     },
 

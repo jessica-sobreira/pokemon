@@ -8,3 +8,4 @@ export interface PokemonModel {
 export interface PokemonFoto {
     front_default: string;
 }
+
