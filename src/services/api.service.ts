@@ -44,3 +44,14 @@ export async function buscarPokemonID(id: number) {
         return null;
     }
 }
+
+export async function buscarPokemonHabilidade(id: number) {
+    try {
+        const result = await api.get(`/pokemon/ability/${id}`);
+        return result.data as PokemonModel;
+    } catch (error: any) {
+        alert(error.toString());
+        console.log(error);
+        return null;
+    }
+}
