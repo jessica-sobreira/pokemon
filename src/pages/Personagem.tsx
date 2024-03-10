@@ -40,7 +40,7 @@ export function Personagem() {
                                 <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>{personagemChamado.name}</Typography>
                                 <Typography variant="subtitle1">ID: {params.id}</Typography>
                                 <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>Tamanho: {personagemChamado.height}</Typography>
-                                <Typography variant="h5" color="text.secondary" sx={{ mb: 1 }}>Lista de Stats</Typography>
+                                <Typography variant="h6" color="text.secondary" sx={{ mb: 1 }}>Lista de Stats</Typography>
                                 <List sx={{ pl: 0 }}>
                                     {personagemChamado.stats.map((stat: any, index: number) => (
                                         <ListItem key={index} sx={{ py: 0 }}>
