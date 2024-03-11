@@ -77,7 +77,7 @@ export function ListaPokemon() {
             <Paginacao />
             <br />
             <br />
-            <Button onClick={() => navigate("/pokedex")} variant="contained" style={{ width: '100%', maxWidth: '300px', margin: '0 auto', display: 'block' }}>Pokedex</Button>
+            <Button onClick={() => navigate("/pokedex")} variant="contained" style={{ width: '100%', maxWidth: '300px', margin: '0 auto', display: 'block', marginTop: '20px', padding: '10px', marginBottom: '20px' }}>Pokedex</Button>
         </>
     );
 }
