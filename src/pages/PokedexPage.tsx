@@ -1,14 +1,15 @@
-import { PokedexCard } from "../components/Pokedex";
-import { Header } from "../components/Header";  
-import { Footer } from "../components/Footer";
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 
-export function Pokedex () {
+
+
+export function PokedexPage() {
 
     return (
         <>
             <Header />
-            <PokedexCard />
+
             <Footer />
         </>
-    )
+    );
 }

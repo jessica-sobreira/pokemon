@@ -1,18 +1,24 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PokemonModel } from '../../model/pokemon.model';
 
-// const initialState = {
-//   favorites: [], 
-// };
+interface PokedexState {
+  favorites: PokemonModel[];
+}
 
-// const pokedexSlice = createSlice({
-//   name: 'pokedex',
-//   initialState,
-//   reducers: {
-//     addFavorite: (state, action) => {
-//       state.favorites.push(action.payload);
-//     },
-//   },
-// });
+const initialState: PokedexState = {
+  favorites: [],
+};
 
-// export const { addFavorite } = pokedexSlice.actions;
-// export default pokedexSlice.reducer;
+const pokedexSlice = createSlice({
+  name: 'pokedex',
+  initialState,
+  reducers: {
+    addFavorite: (state, action: PayloadAction<PokemonModel>) => {
+      state.favorites.push(action.payload);
+    },
+  },
+});
+
+export const { addFavorite } = pokedexSlice.actions;
+export default pokedexSlice.reducer;
+

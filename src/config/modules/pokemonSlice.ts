@@ -37,16 +37,7 @@ export const listarPokemonThunk = createAsyncThunk("pokemons/get", async (_, con
 const pokemonsSlice = createSlice({
   name: "pokemons",
   initialState: [] as PokemonModel[],
-  reducers: {
-    addPokedex: (state, action) => {
-      const pokemonToAdd = action.payload;
-      const existingPokemon = state.find(pokemon => pokemon.id === pokemonToAdd.id);
-
-      if (!existingPokemon) {
-        state.push(pokemonToAdd); // Adiciona o Pokémon completo à lista da Pokédex se ainda não estiver presente
-      }
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(listarPokemonThunk.fulfilled, (_, action) => {
       return action.payload;
@@ -56,5 +47,3 @@ const pokemonsSlice = createSlice({
 });
       
 export default pokemonsSlice.reducer;
-
-export const { addPokedex } = pokemonsSlice.actions;

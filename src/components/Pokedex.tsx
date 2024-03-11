@@ -1,49 +1,31 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Box, CardActionArea, CircularProgress } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../config/hooks';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { useAppSelector } from '../config/hooks';
+// import { Header } from '../components/Header';
+// import { Footer } from '../components/Footer';
 
+// export function PokedexCard() {
+//     const navigate = useNavigate();
+//     const pokedex = useAppSelector(state => state.pokedex.favorites);
 
-export function PokedexCard() {
-    const dispatch = useAppDispatch();
-    const personagemChamado = useAppSelector(state => state.personagem);
+//     useEffect(() => {
+//         // Você pode adicionar lógica adicional aqui, se necessário
+//     }, []);
 
-    useEffect(() => {
+//     const handleNavigateToList = () => {
+//         navigate("/pokemon");
+//     };
 
-    }, [])
-
-
-    if (!personagemChamado) {
-        return (
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-                <CircularProgress />
-                <p>Carregando...</p>
-            </Box>
-        )
-    }
-
-    return (
-        <>     
-            <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                <CardMedia
-                component="img"
-                height="140"
-                image={personagemChamado.sprites.front_default}
-                alt="Pokemon favorito"
-                />
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {personagemChamado.name}
-                </Typography>
-
-                </CardContent>
-            </CardActionArea>
-            </Card>
-        </>
-        
-    )
-}
+//     return (
+//         <>
+//             <Header />
+//             {/* <div>
+//                 {pokedex.map((pokemon, index) => (
+//                     <PokedexCard key={index} pokemon={pokemon} />
+//                 ))}
+//             </div> */}
+//             <button onClick={handleNavigateToList}>Voltar para Lista de Pokémon</button>
+//             <Footer />
+//         </>
+//     );
+// }

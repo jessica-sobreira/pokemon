@@ -6,7 +6,7 @@ import paginacaoSlice from "./modules/paginacao.slice";
 import pokemonSlice from "./modules/pokemonSlice";
 import personagemSlice from "./modules/personagemSlice";
 import habilidadeSlice from "./modules/habilidadeSlice";
-// import pokedexSlice from "./modules/pokedexSlice";
+import pokedexSlice from "./modules/pokedexSlice";
 
 export const rootReducer = combineReducers({
     theme: themeSlice,
@@ -14,7 +14,7 @@ export const rootReducer = combineReducers({
     paginacao: paginacaoSlice,
     personagem: personagemSlice,
     habilidade: habilidadeSlice,
-    // pokedex: pokedexSlice,
+    pokedex: pokedexSlice,
 
 });
 

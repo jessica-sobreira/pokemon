@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { Personagem } from "../pages/Personagem";
 import { Pokemon } from "../pages/Pokemon";
-import { Pokedex } from "../pages/PokedexPage";
+import { PokedexPage } from "../pages/PokedexPage";
+
 
 
 export const routes = createBrowserRouter([
@@ -20,7 +21,7 @@ export const routes = createBrowserRouter([
     },
     {
         path: "/pokedex",
-        element: <Pokedex />
+        element: <PokedexPage />
     }
 
 ]);
