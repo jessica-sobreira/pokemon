@@ -58,5 +58,3 @@ const pokemonsSlice = createSlice({
 export default pokemonsSlice.reducer;
 
 export const { addPokedex } = pokemonsSlice.actions;
-
-

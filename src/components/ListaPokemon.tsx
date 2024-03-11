@@ -64,7 +64,7 @@ export function ListaPokemon() {
                                     <Button onClick={() => navigate(`/pokemon/${pokemon.id}`)} startIcon={<AddIcon />}>
                                         Detalhes
                                     </Button>
-                                    <Button onClick={() => { adicionarPokemonFavorito(); navigate("/pokedex"); }} startIcon={<StarIcon />}>
+                                    <Button onClick={() => { adicionarPokemonFavorito() }} startIcon={<StarIcon />}>
                                         Favorito
                                     </Button>
                                 </CardActions>
@@ -77,6 +77,7 @@ export function ListaPokemon() {
             <Paginacao />
             <br />
             <br />
+            <Button onClick={() => navigate("/pokedex")} variant="contained" style={{ width: '100%', maxWidth: '300px', margin: '0 auto', display: 'block' }}>Pokedex</Button>
         </>
     );
 }
