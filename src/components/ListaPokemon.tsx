@@ -7,11 +7,13 @@ import { Paginacao } from './Paginacao';
 import { useEffect } from 'react';
 import { listarPokemonThunk } from '../config/modules/pokemonSlice';
 import { CircularProgress, Box } from '@mui/material';
+import { addPokedex } from '../config/modules/pokemonSlice';
 
 export function ListaPokemon() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const pokemonDados = useAppSelector(state => state.pokemon);
+    const personagemChamado = useAppSelector(state => state.personagem);
 
 
     useEffect(() => {
@@ -28,6 +30,10 @@ export function ListaPokemon() {
                     </Box>
                 </Box>
             );
+        }
+
+        const adicionarPokemonFavorito = () => {
+            dispatch(addPokedex(personagemChamado)); 
         }
 
 
@@ -58,7 +64,7 @@ export function ListaPokemon() {
                                     <Button onClick={() => navigate(`/pokemon/${pokemon.id}`)} startIcon={<AddIcon />}>
                                         Detalhes
                                     </Button>
-                                    <Button onClick={() => navigate("/")} startIcon={<StarIcon />}>
+                                    <Button onClick={() => { adicionarPokemonFavorito(); navigate("/pokedex"); }} startIcon={<StarIcon />}>
                                         Favorito
                                     </Button>
                                 </CardActions>
