@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch, useAppSelector } from '../config/hooks';
 import { addFavorite, removeFavorite } from '../config/modules/pokedexSlice'; 
 import { PokemonModel } from '../model/pokemon.model'; 
-import { useNavigate } from 'react-router-dom';
+
 
 interface PokedexCardProps {
     pokemon: PokemonModel;
