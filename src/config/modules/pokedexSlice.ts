@@ -16,9 +16,15 @@ const pokedexSlice = createSlice({
     addFavorite: (state, action: PayloadAction<PokemonModel>) => {
       state.favorites.push(action.payload);
     },
+    
+removeFavorite: (state, action: PayloadAction<number>) => {
+  state.favorites = state.favorites.filter((pokemon) => pokemon.id !== action.payload);
+}
+
   },
 });
+ 
 
-export const { addFavorite } = pokedexSlice.actions;
+export const { addFavorite, removeFavorite } = pokedexSlice.actions;
 export default pokedexSlice.reducer;
 
